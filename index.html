@@ -1,0 +1,292 @@
+<!doctype html>
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>SIMON PRECISION - Tactical Cockpit</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- External CSS -->
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Atmospheric Background -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="app-container z-content">
+      <!-- LEFT PANEL: Immersive Game Grid -->
+      <div class="left-panel">
+        <div class="difficulty-wrapper z-overlay">
+          <span class="difficulty-label">DIFFICULTY</span>
+          <div id="difficulty-control" class="difficulty-control">
+            <button class="diff-btn text-emerald">
+              <span class="dot"></span>Easy
+            </button>
+            <button class="diff-btn is-active text-amber">
+              <span class="dot"></span>Medium
+            </button>
+            <button class="diff-btn text-coral-dim">
+              <span class="dot"></span>Hard
+            </button>
+            <button class="diff-btn text-coral">
+              <span class="material-symbols-outlined icon-pulse">bolt</span
+              >Expert
+            </button>
+          </div>
+        </div>
+
+        <div class="tactical-ops-title z-overlay">
+          <span>Tactical OPS</span>
+        </div>
+
+        <div class="pro-upgrade-wrapper z-overlay">
+          <button class="pro-upgrade-btn">
+            <span class="material-symbols-outlined">workspace_premium</span>
+            <span>PRO UPGRADE</span>
+          </button>
+        </div>
+
+        <!-- 2x2 Simon Game Board Container -->
+        <div class="game-board-container">
+          <div class="game-board">
+            <button class="simon-btn btn-green group">
+              <div class="btn-highlight highlight-br"></div>
+            </button>
+            <button class="simon-btn btn-red group">
+              <div class="btn-highlight highlight-bl"></div>
+            </button>
+            <button class="simon-btn btn-yellow group">
+              <div class="btn-highlight highlight-tr"></div>
+            </button>
+            <button class="simon-btn btn-blue group">
+              <div class="btn-highlight highlight-tl"></div>
+            </button>
+          </div>
+
+          <!-- Central 'Start Game' Pill -->
+          <div class="engage-container">
+            <button class="engage-btn group z-overlay">
+              <span
+                class="material-symbols-outlined text-amber group-hover-pulse"
+                >play_arrow</span
+              >
+              <span>ENGAGE</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT PANEL: Data Read-out & LOG -->
+      <div class="right-panel z-content hud-texture">
+        <!-- System Status Bar -->
+        <div class="status-bar">
+            <div>
+                <div class="status-indicator">
+                  <span class="status-blip-dot status-blip"></span>
+                  <span>System Online</span>
+                </div>
+                <span id="hud-clock">00:00:00</span>
+            </div>
+          <div class="profile-actions">
+            <button class="settings-btn">
+              <span class="material-symbols-outlined">settings</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tactical Stats Strip -->
+        <div class="stats-grid">
+          <div class="stat-card hover-surface group">
+            <div class="stat-bg-icon">
+              <svg viewBox="0 0 100 100">
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="40"
+                  stroke="currentColor"
+                  stroke-width="8"
+                  fill="transparent"
+                  stroke-dasharray="251.2"
+                  stroke-dashoffset="80"
+                ></circle>
+              </svg>
+            </div>
+            <span class="stat-label">MISSION LVL</span>
+            <span class="stat-value text-surface-on">12</span>
+            <div class="stat-progress-bar"></div>
+          </div>
+          <div class="stat-card hover-surface group">
+            <div class="stat-bg-graph">
+              <svg viewBox="0 0 100 20" preserveAspectRatio="none">
+                <path
+                  d="M0 15 L20 10 L40 18 L60 5 L80 12 L100 8"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2"
+                ></path>
+              </svg>
+            </div>
+            <span class="stat-label">OP SCORE</span>
+            <span class="stat-value text-surface-on">4,850</span>
+          </div>
+          <div class="stat-card hover-amber group">
+            <span class="material-symbols-outlined stat-bg-large text-amber"
+              >military_tech</span
+            >
+            <span class="stat-label">HIGH COMMAND BEST</span>
+            <span class="stat-value text-amber glow-amber">15,200</span>
+          </div>
+          <div class="stat-card hover-emerald group">
+            <div class="stat-bg-icon text-emerald">
+              <svg viewBox="0 0 100 100">
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="40"
+                  stroke="currentColor"
+                  stroke-width="8"
+                  fill="transparent"
+                  stroke-dasharray="251.2"
+                  stroke-dashoffset="5"
+                ></circle>
+              </svg>
+            </div>
+            <span class="stat-label">ACCURACY</span>
+            <span class="stat-value text-emerald glow-emerald">98%</span>
+          </div>
+        </div>
+
+        <!-- OPERATIONAL LOG -->
+        <div class="operational-log">
+          <div class="log-header">
+            <span class="material-symbols-outlined text-muted">terminal</span>
+            <h2>Operational Log</h2>
+          </div>
+
+          <!-- Achievements Panel in Log -->
+          <div class="log-panel shadow-lg">
+            <div class="panel-header border-b">
+              <h3>Medals &amp; Citations</h3>
+              <span class="material-symbols-outlined text-muted"
+                >military_tech</span
+              >
+            </div>
+            <div class="achievements-grid p-1">
+              <!-- Unlocked -->
+              <div class="achievement-card hover-surface group">
+                <span class="material-symbols-outlined ach-icon text-surface-on"
+                  >military_tech</span
+                >
+                <span class="ach-title">First Blood</span>
+                <span class="ach-desc">Clear Level 1</span>
+              </div>
+              <!-- Unlocked -->
+              <div class="achievement-card hover-emerald group">
+                <span
+                  class="material-symbols-outlined ach-icon text-emerald glow-emerald"
+                  >bolt</span
+                >
+                <span class="ach-title">Perfect Streak</span>
+                <span class="ach-desc">10 in a row</span>
+              </div>
+              <!-- Locked -->
+              <div class="achievement-card locked group">
+                <span
+                  class="material-symbols-outlined ach-icon text-muted locked-badge"
+                  >speed</span
+                >
+                <span class="ach-title text-muted-dark">Speed Demon</span>
+                <span class="ach-desc text-muted-dim">Sub 0.3s avg</span>
+                <span class="material-symbols-outlined lock-icon">lock</span>
+              </div>
+              <!-- Locked -->
+              <div class="achievement-card locked group">
+                <span
+                  class="material-symbols-outlined ach-icon text-muted locked-badge"
+                  >workspace_premium</span
+                >
+                <span class="ach-title text-muted-dark">Elite Commander</span>
+                <span class="ach-desc text-muted-dim">Reach Level 25</span>
+                <span class="material-symbols-outlined lock-icon">lock</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lifetime Stats Panel in Log -->
+          <div class="log-panel shadow-lg mb-xl">
+            <h3 class="mb-md">Service Record</h3>
+            <div class="record-list">
+              <div class="record-item group">
+                <div class="record-left">
+                  <div class="record-dot bg-surface-on animate-pulse"></div>
+                  <span>Deployments</span>
+                </div>
+                <div class="record-right">
+                  <span class="record-label text-muted">TOTAL</span>
+                  <span class="record-value">1,428</span>
+                </div>
+              </div>
+              <div class="record-item group">
+                <div class="record-left">
+                  <div class="record-dot bg-emerald"></div>
+                  <span>Success Rate (LVL 10+)</span>
+                </div>
+                <div class="record-right">
+                  <span class="record-label text-emerald-dim">OPTIMAL</span>
+                  <span class="record-value text-emerald">64.2%</span>
+                </div>
+              </div>
+              <div class="record-item border-none group">
+                <div class="record-left">
+                  <div class="record-dot bg-amber"></div>
+                  <span>Avg Reflex Time</span>
+                </div>
+                <div class="record-right">
+                  <span class="record-label text-muted">LATENCY</span>
+                  <span class="record-value">0.42s</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pb-xl"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Live HUD clock
+      function updateClock() {
+        const el = document.getElementById("hud-clock");
+        if (el)
+          el.textContent = new Date().toLocaleTimeString("en-GB", {
+            hour12: false,
+          });
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      // Difficulty segmented control
+      const diffButtons = document.querySelectorAll(
+        "#difficulty-control .diff-btn",
+      );
+      diffButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          diffButtons.forEach((b) => b.classList.remove("is-active"));
+          btn.classList.add("is-active");
+        });
+      });
+    </script>
+  </body>
+</html>
