@@ -8,17 +8,17 @@
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <!-- Remix icon  -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet"/>
 
     <!-- External CSS -->
     <link href="style.css" rel="stylesheet" />
+
+    <!-- GSAP  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   </head>
   <body>
     <!-- Atmospheric Background -->
@@ -28,83 +28,125 @@
     <div class="app-container z-content">
       <!-- LEFT PANEL: Immersive Game Grid -->
       <div class="left-panel">
-        <div class="difficulty-wrapper z-overlay">
-          <span class="difficulty-label">DIFFICULTY</span>
-          <div id="difficulty-control" class="difficulty-control">
-            <button class="diff-btn text-emerald">
-              <span class="dot"></span>Easy
-            </button>
-            <button class="diff-btn is-active text-amber">
-              <span class="dot"></span>Medium
-            </button>
-            <button class="diff-btn text-coral-dim">
-              <span class="dot"></span>Hard
-            </button>
-            <button class="diff-btn text-coral">
-              <span class="material-symbols-outlined icon-pulse">bolt</span
-              >Expert
+        <nav>
+          <div class="tactical-ops-title">
+            <span>Memora</span>
+          </div>
+          <div class="profile-actions">
+            <button class="settings-btn hamburger-btn">
+              <span class="material-symbols-outlined"
+                ><i class="ri-menu-3-line"></i
+              ></span>
             </button>
           </div>
-        </div>
+        </nav>
 
-        <div class="tactical-ops-title z-overlay">
-          <span>Tactical OPS</span>
-        </div>
+        <div class="main-game">
+          <div class="difficulty-wrapper z-overlay">
+            <span class="difficulty-label">DIFFICULTY</span>
 
-        <div class="pro-upgrade-wrapper z-overlay">
-          <button class="pro-upgrade-btn">
-            <span class="material-symbols-outlined">workspace_premium</span>
-            <span>PRO UPGRADE</span>
-          </button>
-        </div>
-
-        <!-- 2x2 Simon Game Board Container -->
-        <div class="game-board-container">
-          <div class="game-board">
-            <button class="simon-btn btn-green group">
-              <div class="btn-highlight highlight-br"></div>
-            </button>
-            <button class="simon-btn btn-red group">
-              <div class="btn-highlight highlight-bl"></div>
-            </button>
-            <button class="simon-btn btn-yellow group">
-              <div class="btn-highlight highlight-tr"></div>
-            </button>
-            <button class="simon-btn btn-blue group">
-              <div class="btn-highlight highlight-tl"></div>
-            </button>
+            <div id="difficulty-control" class="difficulty-control">
+              <button class="diff-btn text-emerald">
+                <span class="dot"></span>Easy
+              </button>
+              <button class="diff-btn is-active text-amber">
+                <span class="dot"></span>Medium
+              </button>
+              <button class="diff-btn text-coral-dim">
+                <span class="dot"></span>Hard
+              </button>
+              <button class="diff-btn text-coral">
+                <span class="material-symbols-outlined icon-pulse"
+                  ><i class="ri-flashlight-fill"></i></span
+                >Expert
+              </button>
+            </div>
           </div>
 
-          <!-- Central 'Start Game' Pill -->
-          <div class="engage-container">
-            <button class="engage-btn group z-overlay">
-              <span
-                class="material-symbols-outlined text-amber group-hover-pulse"
-                >play_arrow</span
-              >
-              <span>ENGAGE</span>
-            </button>
+          <!-- Game Stats Display -->
+          <div class="game-stats-strip z-content">
+            <div class="game-stat">
+              <span class="game-stat-label">LEVEL</span>
+              <span class="game-stat-value" id="level-value">1</span>
+            </div>
+            <div class="game-stat-divider"></div>
+            <div class="game-stat">
+              <span class="game-stat-label">SCORE</span>
+              <span class="game-stat-value" id="score-value">0</span>
+            </div>
           </div>
+
+          <!-- 2x2 Simon Game Board Container -->
+          <div class="game-board-container">
+            <div class="game-board">
+              <button class="simon-btn btn-green group">
+                <div class="btn-highlight highlight-br"></div>
+              </button>
+              <button class="simon-btn btn-red group">
+                <div class="btn-highlight highlight-bl"></div>
+              </button>
+              <button class="simon-btn btn-yellow group">
+                <div class="btn-highlight highlight-tr"></div>
+              </button>
+              <button class="simon-btn btn-blue group">
+                <div class="btn-highlight highlight-tl"></div>
+              </button>
+            </div>
+
+            <!-- Central 'Start Game' Pill -->
+            <div class="engage-container">
+              <button class="engage-btn group z-overlay">
+                <i class="ri-play-fill"></i>
+                <span>start game</span>
+              </button>
+            </div>
+          </div>
+          <!-- <div class="pro-upgrade-wrapper z-overlay">
+            <button class="pro-upgrade-btn">
+              <span class="material-symbols-outlined">workspace_premium</span>
+              <span>PRO UPGRADE</span>
+            </button>
+          </div> -->
+        </div>
+        <div class="status-bar status-bar-mobile">
+          <div class="status-indicator">
+            <span class="status-blip-dot status-blip"></span>
+            <span>System Online</span>
+          </div>
+          <span id="hud-clock">00:00:00</span>
         </div>
       </div>
 
       <!-- RIGHT PANEL: Data Read-out & LOG -->
       <div class="right-panel z-content hud-texture">
         <!-- System Status Bar -->
-        <div class="status-bar">
-            <div>
-                <div class="status-indicator">
-                  <span class="status-blip-dot status-blip"></span>
-                  <span>System Online</span>
-                </div>
-                <span id="hud-clock">00:00:00</span>
+
+        <!-- <div class="status-bar">
+          <div>
+            <div class="status-indicator">
+              <span class="status-blip-dot status-blip"></span>
+              <span>System Online</span>
             </div>
+            <span id="hud-clock">00:00:00</span>
+          </div>
           <div class="profile-actions">
             <button class="settings-btn">
               <span class="material-symbols-outlined">settings</span>
             </button>
           </div>
-        </div>
+        </div> -->
+        <nav>
+          <div class="tactical-ops-title">
+            <span>Memora</span>
+          </div>
+          <div class="profile-actions">
+            <button class="settings-btn close-btn">
+              <span class="material-symbols-outlined">
+                <i class="ri-close-line"></i>
+              </span>
+            </button>
+          </div>
+        </nav>
 
         <!-- Tactical Stats Strip -->
         <div class="stats-grid">
@@ -288,5 +330,6 @@
         });
       });
     </script>
+    <script src="./js/animation.js"></script>
   </body>
 </html>

@@ -70,6 +70,7 @@ button {
   cursor: pointer;
   font-family: inherit;
   color: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button:focus-visible {
@@ -172,51 +173,66 @@ button:focus-visible {
   height: 100%;
   width: 100%;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .left-panel {
   width: 100%;
-  height: 50vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 1vh;
   position: relative;
   border-bottom: 1px solid var(--glass-stroke);
   background-color: rgba(10, 10, 10, 0.4);
   backdrop-filter: blur(12px);
-  padding: var(--md);
+  padding: var(--md) !important;
+
+  /* display: none; */
+}
+
+.main-game {
+  width: 100%;
+  height: 90dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav {
+  height: 10dvh;
+  /* background-color: #10b981; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .right-panel {
   width: 100%;
-  height: 50vh;
+  height: 100dvh;
   overflow-y: auto;
   background-color: rgba(21, 21, 21, 0.6);
   backdrop-filter: blur(24px);
   padding: var(--md);
-  display: flex;
+    display: none;
   flex-direction: column;
   gap: var(--xl);
-}
 
-@media (min-width: 1024px) {
-  .app-container {
-    flex-direction: row;
-  }
-  .left-panel {
-    width: 50%;
-    height: 100%;
-    border-bottom: none;
-    border-right: 1px solid var(--glass-stroke);
-  }
-  .right-panel {
-    width: 50%;
-    height: 100%;
-    padding: var(--xl);
-  }
-}
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
 
+
+}
+.right-panel nav {
+  padding-bottom: var(--md);
+}
 /* =========================================
    COMPONENTS - LEFT PANEL
    ========================================= */
@@ -225,7 +241,6 @@ button:focus-visible {
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  margin-bottom: var(--md);
 }
 
 .difficulty-label {
@@ -239,12 +254,16 @@ button:focus-visible {
 
 .difficulty-control {
   background-color: rgba(40, 40, 40, 0.8);
-  border-radius: 9999px;
-  padding: 4px;
+  border-radius: 24px;
+  padding: 12px;
   display: flex;
-  gap: 4px;
+
+  align-items: center;
+  justify-items: center;
+  gap: 8px;
   border: 1px solid var(--glass-stroke);
   backdrop-filter: blur(12px);
+  width: fit-content;
 }
 
 .diff-btn {
@@ -306,26 +325,14 @@ button:focus-visible {
   background-color: rgba(244, 63, 94, 0.1);
 }
 
-.tactical-ops-title {
-  position: absolute;
-  top: var(--md);
-  left: var(--md);
-}
-
 .tactical-ops-title span {
   font-family: var(--font-display);
-  font-size: 24px;
+  font-size: var(--xl);
   color: var(--on-surface);
   font-weight: 700;
   letter-spacing: -0.02em;
   text-transform: uppercase;
   opacity: 0.8;
-}
-
-@media (min-width: 1024px) {
-  .tactical-ops-title span {
-    font-size: 32px;
-  }
 }
 
 .pro-upgrade-wrapper {
@@ -357,24 +364,63 @@ button:focus-visible {
   font-size: 14px;
 }
 
+/* Game Stats Strip */
+.game-stats-strip {
+  display: flex;
+  gap: var(--lg);
+  justify-content: center;
+  align-items: center;
+  padding: var(--sm) var(--lg);
+  background-color: rgba(40, 40, 40, 0.3);
+  border: 1px solid var(--glass-stroke);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  width: fit-content;
+}
+
+.game-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--xs);
+  min-width: 80px;
+}
+
+.game-stat-label {
+  font-family: var(--font-label);
+  font-size: 10px;
+  color: rgba(168, 166, 160, 0.5);
+  letter-spacing: 0.25em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.game-stat-value {
+  font-family: var(--font-stats);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--on-surface);
+  line-height: 1;
+}
+
+.game-stat-divider {
+  width: 1px;
+  height: 32px;
+  background-color: var(--glass-stroke);
+}
+
 /* 2x2 SIMON GAME BOARD */
 .game-board-container {
   position: relative;
   width: 100%;
-  max-width: 600px;
-  max-height: 600px;
+  max-width: 500px;
+  max-height: 500px;
   aspect-ratio: 1 / 1;
   padding: var(--md);
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-@media (min-width: 1024px) {
-  .game-board-container {
-    padding: var(--xl);
-  }
 }
 
 .game-board {
@@ -384,11 +430,6 @@ button:focus-visible {
   gap: var(--md);
   width: 100%;
   height: 100%;
-}
-@media (min-width: 1024px) {
-  .game-board {
-    gap: var(--lg);
-  }
 }
 
 .simon-btn {
@@ -526,8 +567,11 @@ button:focus-visible {
   align-items: center;
   gap: var(--sm);
   transition: all 0.3s;
+  text-transform: capitalize;
 }
-
+.engage-btn i {
+  color: var(--game-amber-yellow);
+}
 .engage-btn:hover {
   background-color: var(--surface-bright);
   border-color: rgba(237, 237, 234, 0.4);
@@ -546,6 +590,11 @@ button:focus-visible {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+.status-bar-mobile {
+  border: none;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .status-indicator {
@@ -629,11 +678,6 @@ button:focus-visible {
   gap: var(--sm);
   width: 100%;
   padding: 4px;
-}
-@media (min-width: 1024px) {
-  .stats-grid {
-    gap: var(--md);
-  }
 }
 
 .stat-card {
@@ -946,4 +990,59 @@ button:focus-visible {
 }
 .pb-xl {
   padding-bottom: var(--xl);
+}
+
+/* =========================================
+   MEDIA QUERIES (TABLET & LAPTOP)
+   ========================================= */
+
+/* --- TABLET (768px and up) --- */
+@media (min-width: 768px) {
+  /* Add specific tablet overrides here as your project grows */
+}
+
+/* --- LAPTOP (1024px and up) --- */
+@media (min-width: 1024px) {
+  .app-container {
+    flex-direction: row;
+  }
+
+  .left-panel {
+    width: 60% !important;
+    height: 100%;
+    border-bottom: none;
+    border-right: 1px solid var(--glass-stroke);
+    position: relative;
+  }
+
+  .right-panel {
+    width: 40% !important;
+    height: 100%;
+    padding: var(--xl);
+    position: none !important;
+    width: 50%;
+    display: flex !important; /* Force display on laptop */
+  }
+
+  .tactical-ops-title span {
+    font-size: 32px;
+  }
+
+  .game-board-container {
+    padding: var(--xl);
+  }
+
+  .game-board {
+    gap: var(--lg);
+  }
+
+  .stats-grid {
+    gap: var(--md);
+  }
+
+  /* Hide the toggle buttons on laptop */
+  .hamburger-btn,
+  .close-btn {
+    display: none;
+  }
 }
