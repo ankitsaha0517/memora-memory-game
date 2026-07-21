@@ -217,7 +217,7 @@ nav {
   background-color: rgba(21, 21, 21, 0.6);
   backdrop-filter: blur(24px);
   padding: var(--md);
-    display: none;
+  display: none;
   flex-direction: column;
   gap: var(--xl);
 
@@ -227,12 +227,16 @@ nav {
   width: 100%;
   height: 100%;
   z-index: 50;
-
-
 }
 .right-panel nav {
   padding-bottom: var(--md);
 }
+
+.right-status-bar{
+  display: none !important;
+}
+
+
 /* =========================================
    COMPONENTS - LEFT PANEL
    ========================================= */
@@ -416,7 +420,7 @@ nav {
   max-width: 500px;
   max-height: 500px;
   aspect-ratio: 1 / 1;
-  padding: var(--md);
+  /* padding: var(--md); */
   flex: 1;
   display: flex;
   align-items: center;
@@ -999,6 +1003,10 @@ nav {
 /* --- TABLET (768px and up) --- */
 @media (min-width: 768px) {
   /* Add specific tablet overrides here as your project grows */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 /* --- LAPTOP (1024px and up) --- */
@@ -1013,23 +1021,38 @@ nav {
     border-bottom: none;
     border-right: 1px solid var(--glass-stroke);
     position: relative;
+    padding: var(--lg) !important;
   }
-
+  .left-panel nav {
+    border: none;
+  }
+  .left-panel .status-bar {
+    display: none;
+  }
+  .game-board-container {
+    max-width: 27vw;
+    max-height: 27vw;
+  }
   .right-panel {
     width: 40% !important;
     height: 100%;
     padding: var(--xl);
-    position: none !important;
+    position: relative !important;
     width: 50%;
     display: flex !important; /* Force display on laptop */
+    transform: none !important; /* neutralize GSAP's slide-in transform on desktop */
   }
 
+  .right-panel nav{
+      display: none;
+  }
   .tactical-ops-title span {
     font-size: 32px;
   }
 
-  .game-board-container {
-    padding: var(--xl);
+  .right-status-bar{
+    display: flex !important;
+    padding-bottom: var(--md);
   }
 
   .game-board {
@@ -1037,12 +1060,14 @@ nav {
   }
 
   .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--md);
   }
-
-  /* Hide the toggle buttons on laptop */
   .hamburger-btn,
   .close-btn {
     display: none;
   }
 }
+
+/* MONITOR */
