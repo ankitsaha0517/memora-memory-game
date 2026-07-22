@@ -22,21 +22,3 @@ function showToast(message, type = "info") {
     },
   }).showToast();
 }
-
-// usage: showToast("Wrong sequence!", "error");
-
-// SIMON BUTTONS — click-only white glow
-const simonButtons = document.querySelectorAll(".simon-btn");
-
-simonButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    btn.classList.add("glow-white");
-    setTimeout(() => {
-      btn.classList.remove("glow-white");
-    }, 250);
-  });
-
-  btn.addEventListener("contextmenu", (e) => {
-    e.preventDefault(); // right-click ab kuch nahi karega
-  });
-});
