@@ -1071,3 +1071,8 @@ nav {
 }
 
 /* MONITOR */
+.simon-btn.glow-white {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 0 0 45px 8px rgba(255, 255, 255, 0.75) !important;
+  border-color: rgba(255, 255, 255, 0.9) !important;
+}
