@@ -1,11 +1,11 @@
+Simon.init();
 let systemSequence = [];
 let userSequence = [];
-
 let currentScore = 0;
 let currentLevel = 0;
 
 let isGameStart = false;
-
+let diffculty = false;
 let randomNumber;
 
 let score = document.getElementById("score-value");
@@ -34,13 +34,22 @@ function startGame() {
   isGameStart = true;
 }
 
+if(isGameStart == false){
+  for (let btn of allBtns) {
+    btn.style.pointerEvents = "none";
+  }
+
+}
+
 let startBtn = document.querySelector(".engage-btn");
 startBtn.addEventListener("click", () => {
+  Simon.playStart();
   startBtn.style.display = "none";
+
   if (isGameStart == false) {
     isGameStart = true;
     showToast(" Game Start", "info");
-    setTimeout(levelUp, 500);
+    setTimeout(levelUp, 800);
     systemSequence.length = 0;
     userSequence.length = 0;
     currentLevel = 0;
@@ -55,7 +64,7 @@ function nextLevel() {
   let randomBtn = document.getElementById(`${randomId}`);
 
   systemSequence.push(randomId);
-
+  Simon.playSuccess();
   glowButton(randomBtn, randomId);
 }
 
@@ -72,7 +81,7 @@ function userInput() {
 }
 
 function levelUp() {
-  userSequence.length = 0;
+  // userSequence.length = 0;
   nextLevel();
 }
 
@@ -83,7 +92,7 @@ function chaeck(idx) {
       currentScore = currentScore + 5;
       score.textContent = currentScore;
       level.textContent = currentLevel;
-
+      Simon.playLevelUp();
       console.log(userSequence);
       console.log(systemSequence);
 
@@ -96,7 +105,11 @@ function chaeck(idx) {
 
 function resetGame() {
   showToast(" Game over", "error");
+  Simon.playFailure();
   isGameStart = false;
   startBtn.innerHTML = `Reset Game`;
   startBtn.style.display = "block";
+  for (let btn of allBtns) {
+    btn.style.pointerEvents = "none";
+  }
 }
