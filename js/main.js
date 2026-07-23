@@ -49,7 +49,7 @@ startBtn.addEventListener("click", () => {
   if (isGameStart == false) {
     isGameStart = true;
     showToast(" Game Start", "info");
-    setTimeout(levelUp, 800);
+    setTimeout(levelUp, 300);
     systemSequence.length = 0;
     userSequence.length = 0;
     currentLevel = 0;
@@ -96,7 +96,7 @@ function chaeck(idx) {
       console.log(userSequence);
       console.log(systemSequence);
 
-      setTimeout(levelUp, 1000);
+      setTimeout(levelUp, 400);
     }
   } else {
     resetGame();
